@@ -1,4 +1,4 @@
-# Load testing Dajngo applications using LocustIO
+# Load testing Django applications using LocustIO
 
 Django framework, used for buliding web applications quickly in a clean and efficient manner. As the size of application increases, a common issue faced by all teams is performance of the application. Measuring performance and analysis the areas of improvement is key to deliver a quality product.
 
