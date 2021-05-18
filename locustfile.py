@@ -54,15 +54,27 @@ import requests
 
 class WebsiteUser(HttpUser):
 
+    def on_start(self):
+        self.login()
+
+    def login(self):
+        # GET login page to get csrftoken from it
+        response = self.client.get('quiz/login/')
+        csrftoken = response.cookies['csrftoken']
+        # POST to login page with csrftoken
+        self.client.post('quiz/login/',
+                         {'username': 'prajaip', 'password': 'locust'}, 
+                         headers={'X-CSRFToken': csrftoken})
+
     @task(1)
     def index(self):
-        self.client.get('/')
+        self.client.get('quiz/home/1')
 
-    @task(2)
+    @task(1)
     def get_people(self):
-        self.client.get('/api/people/1/')
+        self.client.get('quiz/get/1/')
 
-    @task(2)
-    def get_starships(self):
-        self.client.get('/api/starships/9/')
+    # @task(2)
+    # def get_starships(self):
+    #     self.client.get('/api/starships/9/')
 
